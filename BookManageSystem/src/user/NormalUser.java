@@ -9,24 +9,26 @@ import java.util.List;
 public class NormalUser extends User
 {
     private static final int maxHoldCount = 3;//默认最大持有书籍量
-    protected List<Integer> holdID;
+    protected int holdCount = 0;
     public NormalUser(int ID, String name, String password, UserType type) {
         super(ID, name, password,type);
-        holdID = new ArrayList<>();
     }
 
     public boolean Borrow(Book book)
     {
-        if(holdID.size() >= 3)
+        if(holdCount >= maxHoldCount)
             return false;
-        holdID.add(book.getBookID());
+        holdCount++;
         return true;
     }
 
     public boolean Return(Book book)
     {
-        if(holdID.removeIf(b-> b == book.getBookID()))
+        if(book.getBorrowerID() == getID())
+        {
+            holdCount --;
             return true;
+        }
         return false;
     }
 }

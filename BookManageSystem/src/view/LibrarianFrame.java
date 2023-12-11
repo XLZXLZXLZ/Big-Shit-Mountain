@@ -106,7 +106,7 @@ public class LibrarianFrame extends JFrame
             @Override
             public void valueChanged(ListSelectionEvent e)
             {
-                if(bookTable.getSelectedRow() <= 0)
+                if(bookTable.getSelectedRow() < 0)
                     return;
                 currentChooseRow  = bookTable.getSelectedRow();
                 Book book = bookList.get(currentChooseRow);
@@ -156,7 +156,7 @@ public class LibrarianFrame extends JFrame
                 Book book = bookList.get(currentChooseRow);
                 if(book.isBorrowed())
                 {
-                    JOptionPane.showMessageDialog(null, "此书籍已被借阅，不可删除!(若有异常，使用\"强制归还\"将该书籍归还!)");
+                    JOptionPane.showMessageDialog(null, "此书籍已被借阅，不可删除");
                     return;
                 }
                 BookManager.getInstance().DelBook(book);

@@ -65,9 +65,9 @@ public class UserManager
         User user = null;
         switch (type)
         {
-            case UserType.Admin -> user = new Admin(userMap.size()+1,name,password,type);
-            case UserType.NormalUser -> user = new NormalUser(userMap.size()+1,name,password,type);
-            case UserType.Librarian -> user = new Librarian(userMap.size()+1,name,password,type);
+            case Admin : user = new Admin(userMap.size()+1,name,password,type); break;
+            case NormalUser: user = new NormalUser(userMap.size()+1,name,password,type); break;
+            case Librarian: user = new Librarian(userMap.size()+1,name,password,type); break;
         }
 
         for (User existingUser : userMap.values())
